@@ -1,0 +1,239 @@
+
+html, body
+{
+    height: 100%;
+    font-family: raleway;
+}
+
+section {
+    margin-top: 10px;
+    max-width: 100%;
+}
+
+/* page */
+.wrapper {
+    height: 100%;
+}
+
+/* Playlist name at top */
+h1 {
+    font-size: 30px;
+    color: #230C81;
+    margin-left: 10px;
+}
+
+/* Heading in sidebar */
+h2 {
+    font-size: 20px;
+    min-width: 100%;
+}
+
+/* sidebar */
+.sidebar {
+    display: block;
+    background-color: #DEE9FF;
+    width: 25%;
+    height: 96%;
+    padding-left: 30px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    position: fixed;
+    color: #230C81;
+    overflow: auto;
+}
+
+/* sidebar with full length */
+.sidebar-full {
+    min-width: 100%;
+    clear: both;
+}
+
+/* sidebar with half the width */
+.sidebar-half {
+    min-width: 50%;
+    float: left;
+    margin-bottom: 10px;
+}
+
+/* main content */
+.main {
+	display: block;
+	width: 70%;
+	position: relative;
+	margin-left: 29%;
+    border: 1px solid #230C81;
+    height: 98%;
+    overflow: auto;
+}
+
+/* buttons */
+.sidebar-button {
+    width: 120px;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    display: block;
+    background-color: #C0D4FF;
+}
+
+/* change button text color on hover */
+.sidebar-button:hover {
+    background-color: #99D1FF;
+    color: blue;
+}
+
+/* input forms */
+input {
+    padding: 5px;
+    margin: 3px;
+}
+
+/* table of songs */
+.table {
+    margin: 10px;
+    width: 98%;
+}
+
+/* table of songs */
+table, th, td {
+	text-align: left;
+	border: 1px solid #9DCFFF;
+}
+
+/* text information */
+.text {
+    padding: 10px;
+}
+
+/* youtube button */
+.playbutton {
+    color: orange;
+    cursor: pointer;
+}
+
+/* youtube button change color on hover */
+.playbutton:hover {
+    color: #DD4920;
+}
+
+/* remove music button in table */
+.removebutton, .addbutton {
+    width: auto;
+    height: 20px;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    border: none;
+    background-color: #C0D4FF;
+}
+
+/* change color of text on hover */
+.removebutton:hover {
+    color: red;
+}
+
+/* change color of text on hover */
+.addbutton:hover {
+    color: green;
+}
+
+/* search result list */
+.search-results { 
+    background:none;
+    border:none; 
+}
+
+/* change color of text on hover */
+.search-results:hover { 
+    color: blue; 
+}
+
+/* playlist list */
+li {
+    cursor: pointer;
+    list-style-type: none;
+    display: block;
+    width: 50%;
+    padding: 5px;
+    margin: 1px;
+}
+
+/* change color of playlist list on hover */
+li:hover {
+    color: blue;
+    background-color: #99D1FF;
+}
+
+/* dropdowns for inputs */
+.popup {
+    position: relative;
+    display: inline-block;
+}
+
+/* dropdown for adding music */
+.popup-content-music {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* content inside the dropdown */
+.popup-content-music label input {
+    padding: 5px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* dropdown for adding playlist */
+.popup-content-playlist {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* content inside the dropdown */
+.popup-content-playlist label input {
+    padding: 5px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* dropdown for adding music in playlists */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    padding: 5px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown search-resultss on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+/* Show the dropdown menu */
+.show {
+    display:block;
+}
+
+

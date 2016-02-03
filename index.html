@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Musicbox</title>
+
+	<link rel="stylesheet" type="text/css" href="musicbox.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://digg.googlecode.com/files/Class-0.0.2.js"></script>
+
+	<script src="https://apis.google.com/js/client:platform.js?onload=startApp" async defer></script>
+	<!-- JavaScript specific to this application that is not related to API calls -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" ></script>
+	<meta name="google-signin-client_id" content="762968223842-lp124isnd3msk6tv0ot8ht54onstvojq.apps.googleusercontent.com"></meta>
+
+	<script type="text/javascript">
+	function showUser(str) {
+		if (str=="") {
+			document.getElementById("txtHint").innerHTML="";
+			return;
+		} 
+		if (window.XMLHttpRequest) {
+			/* code for IE7+, Firefox, Chrome, Opera, Safari */
+			xmlhttp=new XMLHttpRequest();
+		}
+		else {
+			/* code for IE6, IE5 */
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				document.getElementById("otherinfo").innerHTML = "Hi " + str.getGivenName();
+
+				var table = document.getElementById("musiclist");
+			//table.innerHTML = xmlhttp.responseText;
+			document.getElementById("otherinfo").innerHTML = xmlhttp.responseText;
+		}
+	};
+
+	xmlhttp.open("GET","connect.php?q=" + str, true);
+	xmlhttp.send();
+}
+</script>
+
+</head>
+
+<body>
+
+	<div id="gConnect">
+		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+		<a href="#" onclick="signOut();">Sign out</a>
+	</div>
+
+
+	<div id="musicbox" class="wrapper" style="display:none;">
+		<div class="sidebar">
+
+			<!-- refresh or clear list -->
+			<section>
+				<h2>Refresh/Clear music</h2>
+
+				<div class="sidebar-half">
+					<input id="refreshlistbutton" type="button" class="sidebar-button" value="Refresh list"/>
+				</div>
+
+				<div class="sidebar-half">
+					<input id="clearlistbutton" type="button" class="sidebar-button" value="Clear list"/>
+				</div>
+			</section>
+
+
+			<!-- add and remove music -->
+			<section>
+				<h2>Add/Remove music</h2>
+
+				<div class="sidebar-half">
+					<div class="popup">
+						<input id="addmusicdropdown" type="button" class="sidebar-button addmusicdropdown" value="Add music" />
+						<div id="musicpopup" class="popup-content-music">
+							<label for="title">Title</label>
+							<input type="text" id="title" class='title' value="" />
+
+							<label for="artist">Artist</label>
+							<input type="text" id="artist" class="artist" value="" />
+
+							Favourite? <input type="checkbox" id="favourite" class="favourite" />
+							<input id="addmusicbutton" type="button" class="sidebar-button" value="Add music"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="sidebar-half">
+					<input id="removemusicbutton" type="button" class="sidebar-button" value="Remove music"/>
+				</div>
+			</section>
+
+			<!-- edit music -->
+			<section>
+				<div class="sidebar-full">
+					<h2>Edit music</h2>
+					<input id="editmusicbutton" type="button" class="sidebar-button" value="Edit music"/>
+				</div>
+			</section>
+
+
+			<!-- sort -->
+			<section>
+				<div class="sidebar-full">
+					<h2>Sort by:</h2>
+					<form>
+						<input id="radiotitle" type="radio" name="sort" value="Title" checked />Title&nbsp&nbsp&nbsp&nbsp&nbsp
+						<input id="radioartist" type="radio" name="sort" value="Artist" />Artist<br/>
+					</form>
+				</div>
+			</section>
+
+
+			<!-- find music -->
+			<section>
+				<div class="sidebar-full">
+					<h2>Find music</h2>
+					<div>
+						<label for="keyword">Keyword</label>
+						<input type="text" id="keyword" value="" />
+					</div>
+					<input id="findmusicbutton" type="button" class="sidebar-button" value="Find music"/>
+				</div>
+			</section>
+
+
+			<!-- populate list -->
+			<section>
+				<h2>Populate list</h2>
+				<input type="button" value="Populate list" class="sidebar-button" onclick="populateList()"/>
+			</section>
+
+
+			<!-- create/delete playlist -->
+			<section>
+				<div>
+					<h2>Add/Remove playlist</h2>
+					<div class="sidebar-half">
+						<div class="popup">
+							<input id="addplaylistdropdown" type="button" class="sidebar-button addplaylistdropdown" value="Add playlist" />
+							<div id="playlistpopup" class="popup-content-playlist">
+								<label for="playlist">Playlist name</label>
+								<input type="text" id="playlistname" class="playlistname" value="" />
+								<input id="addplaylistbutton" type="button" class="sidebar-button" value="Add playlist" />
+							</div>
+						</div>
+					</div>
+
+					<div class="sidebar-half">
+						<input id="removeplaylistbutton" type="button" class="sidebar-button" value="Remove playlist"/>
+					</div>
+				</div>
+			</section>
+
+			<!-- edit playlist -->
+			<section>
+				<div class="sidebar-full">
+					<h2>Edit playlist</h2>
+					<input id="editplaylistbutton" type="button" class="sidebar-button" value="Edit playlist"/>
+				</div>
+			</section>
+
+
+			<!-- playlists -->
+			<section>
+				<div class="sidebar-full">
+					<h2>Playlists</h2>
+					<div id="playlists"></div>
+				</div>
+			</section>
+
+
+			<!-- add to playlist -->
+			<div>
+				<section class="sidebar-full">
+					<h2>Add to Playlist</h2>
+					<div id="dropdowndiv" class="dropdown">
+						<input id="dropdownbutton" type="button" class="sidebar-button dropdownbutton" value="Select target" />
+						<div id="dropdown" class="dropdown-content"></div>
+					</div>
+					<div id="extraButtons"></div>
+				</div>
+			</section>
+
+			<!-- logout -->
+			<section>
+				<div class="sidebar-full">
+					<h2>Logout</h2>
+					<input type="button" class="sidebar-button" value="Logout" onclick="signOut();"/>
+				</div>
+			</section>
+
+		</div>
+
+
+
+		<div class="main">
+			<!-- current playlist name -->
+			<h1 id="current"></h1>
+
+			<!-- table of music -->
+			<table id="musiclist" class="table">
+				<tr>
+					<th>Music</th>
+					<th>Artist</th>
+					<th>Favourite?</th>
+					<th>Play on Youtube</th>
+				</tr>
+			</table>
+
+			<!-- Total number of music -->
+			<div id="total" class="text"></div>
+
+			<!-- other info such as search results -->
+			<div id="otherinfo" class="text"></div>
+		</div>
+
+
+	</div>
+
+
+</body>
+
+<script type="text/javascript">
+
+function onSignIn(googleUser) {
+	var authResult = gapi.auth2.getAuthInstance();
+	$('#authResult').html('Auth Result:<br/>');
+	for (var field in authResult) {
+		$('#authResult').append(' ' + field + ': ' +
+			authResult[field] + '<br/>');
+	}
+	if (authResult.isSignedIn.get()) {
+		var user = googleUser.getBasicProfile();
+		console.log(user);
+		showUser(user);
+		$('#musicbox').show('slow');
+		$('#gConnect').hide();
+	} else if (authResult['error'] ||
+		authResult.currentUser.get().getAuthResponse() == null) {
+		/* There was an error, which means the user is not signed in. */
+		/* As an example, you can handle by writing to the console: */
+		console.log('There was an error: ' + authResult['error']);
+		$('#authResult').append('Logged out');
+		$('#musicbox').hide('slow');
+		$('#gConnect').show();
+	}
+
+	console.log('authResult', authResult);
+}
+
+function signOut() {
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function () {
+		console.log('User signed out.');
+	});
+	$('#musicbox').hide();
+	$('#gConnect').show();
+}
+</script>
+
+<script type="text/javascript" src="musicbox.js"></script>
+<script type="text/javascript" src="basic.js"></script>	
+
+</html>
