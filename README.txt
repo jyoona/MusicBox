@@ -1,7 +1,6 @@
 
-On console:
+MusicBox
 
-python -m SimpleHTTPServer 8888
-
-
-open localhost on browser
+Created January 2016.
+Organizes a list of music information (not the music itself). Includes functionalities: add/remove music, edit music, youtube link, add/remove playlist, add to/remove from playlist.
+Uses javascript.
