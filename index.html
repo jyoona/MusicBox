@@ -17,36 +17,6 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" ></script>
 	<meta name="google-signin-client_id" content="762968223842-lp124isnd3msk6tv0ot8ht54onstvojq.apps.googleusercontent.com"></meta>
 
-	<script type="text/javascript">
-	function showUser(str) {
-		if (str=="") {
-			document.getElementById("txtHint").innerHTML="";
-			return;
-		} 
-		if (window.XMLHttpRequest) {
-			/* code for IE7+, Firefox, Chrome, Opera, Safari */
-			xmlhttp=new XMLHttpRequest();
-		}
-		else {
-			/* code for IE6, IE5 */
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
-		xmlhttp.onreadystatechange = function () {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				document.getElementById("otherinfo").innerHTML = "Hi " + str.getGivenName();
-
-				var table = document.getElementById("musiclist");
-			//table.innerHTML = xmlhttp.responseText;
-			document.getElementById("otherinfo").innerHTML = xmlhttp.responseText;
-		}
-	};
-
-	xmlhttp.open("GET","connect.php?q=" + str, true);
-	xmlhttp.send();
-}
-</script>
-
 </head>
 
 <body>
@@ -241,8 +211,6 @@ function onSignIn(googleUser) {
 	}
 	if (authResult.isSignedIn.get()) {
 		var user = googleUser.getBasicProfile();
-		console.log(user);
-		showUser(user);
 		$('#musicbox').show('slow');
 		$('#gConnect').hide();
 	} else if (authResult['error'] ||
